@@ -12,8 +12,11 @@ const startServer = async () => {
 
     // Sync database (use with caution in production)
     if (process.env.NODE_ENV === 'development') {
-      await sequelize.sync({ alter: true });
+      await sequelize.sync({ force: false }); // force: true удаляет все данные!
       console.log('Database synced');
+    } else {
+      // В продакшене только проверяем соединение, миграции через CLI
+      console.log('Database connected - running in production mode');
     }
 
     app.listen(PORT, () => {

@@ -6,7 +6,7 @@ const { sequelize } = require('./config/db');
 const errorHandler = require('./middleware/error');
 
 // Route imports
-const userRoutes = require('./routes/userRoutes');
+const apiRoutes = require('./routes'); // автоматически импортирует index.js
 
 const app = express();
 
@@ -36,8 +36,8 @@ app.get('/health', async (req, res) => {
   }
 });
 
-// Routes
-app.use('/api/users', userRoutes);
+// API Routes - все API маршруты через один файл
+app.use('/api', apiRoutes);
 
 // 404 handler
 app.use('*', (req, res) => {
