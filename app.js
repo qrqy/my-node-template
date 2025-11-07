@@ -4,6 +4,7 @@ const helmet = require('helmet');
 const morgan = require('morgan');
 const { sequelize } = require('./config/db');
 const errorHandler = require('./middleware/error');
+const setupSwagger = require('./swagger');
 
 // Route imports
 const apiRoutes = require('./routes'); // автоматически импортирует index.js
@@ -16,6 +17,8 @@ app.use(cors());
 app.use(morgan('combined'));
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true }));
+
+setupSwagger(app);
 
 // Health check route
 app.get('/health', async (req, res) => {

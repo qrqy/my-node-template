@@ -21,6 +21,7 @@ const startServer = async () => {
 
     app.listen(PORT, () => {
       console.log(`Server is running on port ${PORT}`);
+      console.log(`Swagger docs at /api-docs`);
       console.log(`Environment: ${process.env.NODE_ENV}`);
     });
   } catch (error) {
